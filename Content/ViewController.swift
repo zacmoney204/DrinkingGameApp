@@ -17,7 +17,6 @@ class ViewController: UIViewController {
     }
     
     var cupIndex = 0
-    var i = 0
     
     lazy var game = FearPong(numberOfCups: cupArray.count)
         
@@ -40,9 +39,9 @@ class ViewController: UIViewController {
     
     func flipCup(on button: UIButton ){
         if game.cups[cupIndex].hasBeenHit == false {
-            cupState(setState: false)
+            disableCups()
                 button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-                dareVisability(setState: false)
+                unhideDareLabels()
                 game.hitCup(at: cupIndex)
         } else {
             loseCup()
@@ -53,36 +52,51 @@ class ViewController: UIViewController {
         cupArray[cupIndex].backgroundColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
         dareLabel.text = "Good work but if they hit this cup again you have to drink it"
         viewDidLoad()
-        cupState(setState: true)
+        enableCups()
        
     }
     
     @IBAction func noDare(_ sender: UIButton) {
-        dareVisability(setState: true)
+        hideDareLabels()
         loseCup()
     }
     
     func loseCup(){
         cupArray[cupIndex].backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         dareLabel.text = "You lose this cup, DRINK!!!!!"
-        cupState(setState: true)
+        enableCups()
         game.cups[cupIndex].outOfPlay = true
     }
     
-    func cupState (setState state: Bool){
+    func disableCups(){
+        var i = 0
         repeat {
-            cupArray[i].isEnabled = state
+            cupArray[i].isEnabled = false
             i = i + 1
         } while i < cupArray.count
-        i = 0
+
+    }
+    
+    func enableCups(){
+        var i = 0
+        repeat {
+            cupArray[i].isEnabled = true
+            i = i + 1
+        } while i < cupArray.count
+        
     }
 
-    func dareVisability(setState state: Bool){
-        dareStatus.isHidden = state
-        yesOutlet.isHidden = state
-        noOutlet.isHidden = state
+    func unhideDareLabels(){
+        dareStatus.isHidden = false
+        yesOutlet.isHidden = false
+        noOutlet.isHidden = false
     }
 
-
+    func hideDareLabels(){
+        dareStatus.isHidden = true
+        yesOutlet.isHidden = true
+        noOutlet.isHidden = true
+    }
+    
 }
 
