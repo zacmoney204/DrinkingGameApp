@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     }
     
     var cupIndex = 0
+    let enabledCupColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
+    let disabledCupColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
     
     lazy var game = FearPong(numberOfCups: cupArray.count)
         
@@ -27,7 +29,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var noOutlet: UIButton!
   
     
-    @IBAction func touchCard(_ sender: UIButton) {
+    @IBAction func onCupHit(_ sender: UIButton) {
         
         cupIndex = cupArray.index(of: sender)!
         
@@ -38,31 +40,31 @@ class ViewController: UIViewController {
     }
     
     func flipCup(on button: UIButton ){
-        if game.cups[cupIndex].hasBeenHit == false {
-            disableCups()
-                button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-                unhideDareLabels()
-                game.hitCup(at: cupIndex)
-        } else {
+        if game.cups[cupIndex].hasBeenHit{
             loseCup()
+            return
         }
+        disableCups()
+        button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        unhideDareLabels()
+        game.hitCup(at: cupIndex)
     }
     
-    @IBAction func yesDare(_ sender: UIButton) {
-        cupArray[cupIndex].backgroundColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
-        dareLabel.text = "Good work but if they hit this cup again you have to drink it"
+    @IBAction func dareCompleted(_ sender: UIButton) {
+        cupArray[cupIndex].backgroundColor = enabledCupColor
+        dareLabel.text = game.dareCompleted
         viewDidLoad()
         enableCups()
     }
     
-    @IBAction func noDare(_ sender: UIButton) {
+    @IBAction func dareNotCompleted(_ sender: UIButton) {
         hideDareLabels()
         loseCup()
     }
     
     func loseCup(){
-        cupArray[cupIndex].backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-        dareLabel.text = "You lose this cup, DRINK!!!!!"
+        cupArray[cupIndex].backgroundColor = disabledCupColor
+        dareLabel.text = game.dareNotCompleted
         enableCups()
         game.cups[cupIndex].outOfPlay = true
     }

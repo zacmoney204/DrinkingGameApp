@@ -11,8 +11,9 @@ import Foundation
 class FearPong
 {
     var cups = [Cup]()
-    
     var dareChoices = ["Take a shot","Steal someones drink and one touch it", "Arm Wrestle the opponent", "Sign the National Anthem", "Let the opponent punch you in the gut","do 5 pushups"]
+    let dareCompleted = "Good work but if they hit this cup again you have to drink it"
+    let dareNotCompleted = "You lose this cup, DRINK!!!!!"
     
     func hitCup(at index: Int){
         if cups[index].hasBeenHit == true {
