@@ -53,7 +53,6 @@ class ViewController: UIViewController {
         dareLabel.text = "Good work but if they hit this cup again you have to drink it"
         viewDidLoad()
         enableCups()
-       
     }
     
     @IBAction func noDare(_ sender: UIButton) {
@@ -69,21 +68,15 @@ class ViewController: UIViewController {
     }
     
     func disableCups(){
-        var i = 0
-        repeat {
-            cupArray[i].isEnabled = false
-            i = i + 1
-        } while i < cupArray.count
-
+        cupArray.forEach { cup in
+            cup.isEnabled = false
+        }
     }
     
     func enableCups(){
-        var i = 0
-        repeat {
-            cupArray[i].isEnabled = true
-            i = i + 1
-        } while i < cupArray.count
-        
+        cupArray.forEach { cup in
+            cup.isEnabled = true
+        }
     }
 
     func unhideDareLabels(){
@@ -99,4 +92,5 @@ class ViewController: UIViewController {
     }
     
 }
+
 
