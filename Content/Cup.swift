@@ -12,18 +12,6 @@ struct Cup
 {
     var hasBeenHit = false
     var outOfPlay = false
-    var identifier: Int
-    
-    static var identifierFactory = 0
-    
-    static func getUniqueIdentifier() -> Int {
-        identifierFactory += 1
-        return Cup.identifierFactory
-        }
-    
-    init() {
-        self.identifier = Cup.getUniqueIdentifier()
-    }
-
+    var dare = ""
 }
 

@@ -14,11 +14,14 @@ class ViewController: UIViewController {
         dareStatus.isHidden = true
         yesOutlet.isHidden = true
         noOutlet.isHidden = true
+        game.getDaresFromTxtFile()
+        game.removeBlankFromDareChoices()
+        game.assignDares(numberOfCups: cupArray.count)
     }
     
     var cupIndex = 0
-    let enabledCupColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
-    let disabledCupColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+    let inPlayCupColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
+    let outOfPlayCupColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
     
     lazy var game = FearPong(numberOfCups: cupArray.count)
         
@@ -30,11 +33,9 @@ class ViewController: UIViewController {
   
     
     @IBAction func onCupHit(_ sender: UIButton) {
-        
         cupIndex = cupArray.index(of: sender)!
-        
+        print(cupIndex)
         if game.cups[cupIndex].outOfPlay == false {
-            dareLabel.text = game.dareChoices[cupIndex]
             flipCup(on: sender)
         }
     }
@@ -46,14 +47,15 @@ class ViewController: UIViewController {
         }
         disableCups()
         button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        dareLabel.text = game.cups[cupIndex].dare
         unhideDareLabels()
         game.hitCup(at: cupIndex)
     }
     
     @IBAction func dareCompleted(_ sender: UIButton) {
-        cupArray[cupIndex].backgroundColor = enabledCupColor
+        cupArray[cupIndex].backgroundColor = inPlayCupColor
         dareLabel.text = game.dareCompleted
-        viewDidLoad()
+        hideDareLabels()
         enableCups()
     }
     
@@ -63,7 +65,7 @@ class ViewController: UIViewController {
     }
     
     func loseCup(){
-        cupArray[cupIndex].backgroundColor = disabledCupColor
+        cupArray[cupIndex].backgroundColor = outOfPlayCupColor
         dareLabel.text = game.dareNotCompleted
         enableCups()
         game.cups[cupIndex].outOfPlay = true
