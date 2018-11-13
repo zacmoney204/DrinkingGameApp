@@ -10,6 +10,7 @@
 		11028CBF2198F22100CE3350 /* DareSet1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11028CBE2198F22100CE3350 /* DareSet1.txt */; };
 		113AB9932182AEED00F27E9A /* FearPong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113AB9922182AEED00F27E9A /* FearPong.swift */; };
 		113AB9952182B24700F27E9A /* Cup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113AB9942182B24700F27E9A /* Cup.swift */; };
+		1147A71E219A50E7005D176A /* UIMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1147A71D219A50E7005D176A /* UIMod.swift */; };
 		11780D81217BA110008FE325 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11780D80217BA110008FE325 /* AppDelegate.swift */; };
 		11780D83217BA110008FE325 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11780D82217BA110008FE325 /* ViewController.swift */; };
 		11780D86217BA110008FE325 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11780D84217BA110008FE325 /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 		11028CBE2198F22100CE3350 /* DareSet1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DareSet1.txt; sourceTree = "<group>"; };
 		113AB9922182AEED00F27E9A /* FearPong.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FearPong.swift; sourceTree = "<group>"; };
 		113AB9942182B24700F27E9A /* Cup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cup.swift; sourceTree = "<group>"; };
+		1147A71D219A50E7005D176A /* UIMod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIMod.swift; sourceTree = "<group>"; };
 		11780D7D217BA110008FE325 /* Content.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Content.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11780D80217BA110008FE325 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11780D82217BA110008FE325 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				11780D92217BA155008FE325 /* Supporting Files */,
 				11780D82217BA110008FE325 /* ViewController.swift */,
 				11780D84217BA110008FE325 /* Main.storyboard */,
+				1147A71D219A50E7005D176A /* UIMod.swift */,
 				11780D8C217BA111008FE325 /* Info.plist */,
 			);
 			path = Content;
@@ -156,6 +159,7 @@
 				113AB9952182B24700F27E9A /* Cup.swift in Sources */,
 				11780D83217BA110008FE325 /* ViewController.swift in Sources */,
 				113AB9932182AEED00F27E9A /* FearPong.swift in Sources */,
+				1147A71E219A50E7005D176A /* UIMod.swift in Sources */,
 				11780D81217BA110008FE325 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

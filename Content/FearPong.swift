@@ -52,7 +52,8 @@ class FearPong
             cups[index].outOfPlay = true
         } else {
             cups[index].hasBeenHit = true
+            cups[index].dareDone = true
         }
     }
-
+    
 }

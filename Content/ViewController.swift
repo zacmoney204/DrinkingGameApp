@@ -30,11 +30,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var dareStatus: UILabel!
     @IBOutlet weak var yesOutlet: UIButton!
     @IBOutlet weak var noOutlet: UIButton!
-  
+
+    
     
     @IBAction func onCupHit(_ sender: UIButton) {
         cupIndex = cupArray.index(of: sender)!
-        print(cupIndex)
         if game.cups[cupIndex].outOfPlay == false {
             flipCup(on: sender)
         }
@@ -54,6 +54,7 @@ class ViewController: UIViewController {
     
     @IBAction func dareCompleted(_ sender: UIButton) {
         cupArray[cupIndex].backgroundColor = inPlayCupColor
+        cupArray[cupIndex].borderColor = inPlayCupColor
         dareLabel.text = game.dareCompleted
         hideDareLabels()
         enableCups()
@@ -66,9 +67,10 @@ class ViewController: UIViewController {
     
     func loseCup(){
         cupArray[cupIndex].backgroundColor = outOfPlayCupColor
+        cupArray[cupIndex].borderColor = outOfPlayCupColor
         dareLabel.text = game.dareNotCompleted
         enableCups()
-        game.cups[cupIndex].outOfPlay = true
+        game.hitCup(at: cupIndex)
     }
     
     func disableCups(){
@@ -94,7 +96,6 @@ class ViewController: UIViewController {
         yesOutlet.isHidden = true
         noOutlet.isHidden = true
     }
-    
-}
 
+}
 
