@@ -13,6 +13,5 @@ struct Cup
     var hasBeenHit = false
     var outOfPlay = false
     var dare = ""
-    var dareDone = false
 }
 

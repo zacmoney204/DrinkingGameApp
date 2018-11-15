@@ -14,7 +14,7 @@ class FearPong
     var dareChoices = [String]()
     let dareCompleted = "Good work but if they hit this cup again you have to drink it"
     let dareNotCompleted = "You lose this cup, DRINK!!!!!"
-    
+    let gameOver =  "Game Over"
     
     init(numberOfCups: Int) {
         for _ in 1...numberOfCups{
@@ -52,7 +52,13 @@ class FearPong
             cups[index].outOfPlay = true
         } else {
             cups[index].hasBeenHit = true
-            cups[index].dareDone = true
+        }
+    }
+
+    func restart(numberOfCups: Int){
+        for cup in 0..<numberOfCups{
+            cups[cup].outOfPlay = false
+            cups[cup].hasBeenHit = false
         }
     }
     

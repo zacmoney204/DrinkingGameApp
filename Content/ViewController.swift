@@ -14,6 +14,7 @@ class ViewController: UIViewController {
         dareStatus.isHidden = true
         yesOutlet.isHidden = true
         noOutlet.isHidden = true
+        resetGame.isHidden = true
         game.getDaresFromTxtFile()
         game.removeBlankFromDareChoices()
         game.assignDares(numberOfCups: cupArray.count)
@@ -22,6 +23,7 @@ class ViewController: UIViewController {
     var cupIndex = 0
     let inPlayCupColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
     let outOfPlayCupColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+    let defaultBorder = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
     
     lazy var game = FearPong(numberOfCups: cupArray.count)
         
@@ -30,8 +32,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var dareStatus: UILabel!
     @IBOutlet weak var yesOutlet: UIButton!
     @IBOutlet weak var noOutlet: UIButton!
-
-    
+    @IBOutlet weak var resetGame: UIButton!
     
     @IBAction func onCupHit(_ sender: UIButton) {
         cupIndex = cupArray.index(of: sender)!
@@ -58,6 +59,7 @@ class ViewController: UIViewController {
         dareLabel.text = game.dareCompleted
         hideDareLabels()
         enableCups()
+        isGameOver()
     }
     
     @IBAction func dareNotCompleted(_ sender: UIButton) {
@@ -71,6 +73,7 @@ class ViewController: UIViewController {
         dareLabel.text = game.dareNotCompleted
         enableCups()
         game.hitCup(at: cupIndex)
+        isGameOver()
     }
     
     func disableCups(){
@@ -97,5 +100,29 @@ class ViewController: UIViewController {
         noOutlet.isHidden = true
     }
 
+    func isGameOver(){
+        var hitCount = 0
+        for cup in 0..<cupArray.count {
+            if game.cups[cup].outOfPlay == true {
+                hitCount += 1
+            }
+        }
+        if hitCount == 6 {
+            dareLabel.text = game.gameOver
+            resetGame.isHidden = false
+        }
+    }
+    
+
+    @IBAction func restartGame(_ sender: UIButton) {
+        viewDidLoad()
+        cupArray.forEach{cup in
+            cup.backgroundColor = inPlayCupColor
+            game.restart(numberOfCups: cupArray.count)
+            cup.borderColor = defaultBorder
+            dareLabel.text = ""
+        }
+    }
+    
 }
 
